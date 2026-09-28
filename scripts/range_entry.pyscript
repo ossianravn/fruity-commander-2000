@@ -1,0 +1,20 @@
+# Script.Name = "Postfader Apply"
+# Script.Category = "Postfader"
+# OPERATION, REQUEST, REQUEST_ID, RECEIPT_PATH and SECRET are generated.
+import hashlib
+import hmac
+import json
+
+import flpianoroll as flp
+
+try:
+    payload = globals()[OPERATION](flp, REQUEST)
+except Exception as error:
+    payload = {"status": "failed", "message": f"{type(error).__name__}: {error}"}
+payload["request_id"] = REQUEST_ID
+canonical = json.dumps(payload, sort_keys=True, separators=(",", ":"),
+                       ensure_ascii=True, allow_nan=False).encode("ascii")
+envelope = {"payload": payload,
+            "hmac_sha256": hmac.new(bytes.fromhex(SECRET), canonical, hashlib.sha256).hexdigest()}
+with open(RECEIPT_PATH, "x", encoding="ascii") as receipt:
+    json.dump(envelope, receipt, ensure_ascii=True)

@@ -1,0 +1,625 @@
+{
+  "fl_load_generator_state": {
+    "source": "fresh-instrument-product-setup.jsonl",
+    "result": {
+      "status": "loaded",
+      "project_saved": false,
+      "automatic_retry": false,
+      "channel_index": 1,
+      "preset_path": "C:\\CodexApp\\fruity-commander-2000\\.local\\proof\\MPC Rich Swell Configured.fst",
+      "musical_setup_verified": false,
+      "native": {
+        "process_id": 39824,
+        "thread_id": 35188,
+        "operation": 7,
+        "created_channel": -1,
+        "source_event": -1,
+        "stage": 2,
+        "created_clip": -1,
+        "native_callback_completed": true
+      },
+      "channel": {
+        "index": 1,
+        "index_scope": "global",
+        "name": "MPC Rich Swell Configured",
+        "volume": 0.78125,
+        "pan": 0.0,
+        "pitch": 0.0,
+        "pitch_semitones": 0,
+        "pitch_range": 2,
+        "muted": false,
+        "solo": false,
+        "selected": true,
+        "type": 2,
+        "type_name": "generator_plugin",
+        "mixer_track": 0,
+        "color": 4284245354,
+        "plugin": "MPC Beats",
+        "plugin_user_name": "MPC Rich Swell Configured",
+        "reported_parameter_count": 4240,
+        "target_fingerprint": "05b94860c2d876a608deaa729ac4afd6128674abc55787283e804ac12638cada",
+        "channel_fingerprint": "bb1f72713a79b13580c3564bc7c49afdf9c5b18056b95e5dec6706175662aaf7"
+      },
+      "verification": "wrapper_accepted_file_and_instance_retained",
+      "message": "Wrapper accepted the preset in the same instance. Verify sound and internal setup separately."
+    }
+  },
+  "fl_add_generator": {
+    "source": "preset-version-correction.jsonl",
+    "result": {
+      "status": "loaded",
+      "project_saved": false,
+      "automatic_retry": false,
+      "verification": "host_plugin_identity_readback",
+      "preset_path": "C:\\CodexApp\\fruity-commander-2000\\.local\\proof\\MPC Rich Swell Configured.fst",
+      "expected_plugin_name": "MPC Beats",
+      "session_fingerprint": "0000000000009f1c18d953bcc7ac1f74",
+      "native": {
+        "process_id": 40732,
+        "thread_id": 33616,
+        "operation": 3,
+        "created_channel": 13,
+        "source_event": 851968,
+        "stage": 2,
+        "created_clip": -1,
+        "native_callback_completed": true
+      },
+      "observed_channel_count": 14,
+      "new_channels": [
+        {
+          "index": 13,
+          "index_scope": "global",
+          "name": "MPC Rich Swell Configured",
+          "volume": 0.78125,
+          "pan": 0.0,
+          "pitch": 0.0,
+          "pitch_semitones": 0,
+          "pitch_range": 2,
+          "muted": false,
+          "solo": false,
+          "selected": false,
+          "type": 2,
+          "type_name": "generator_plugin",
+          "mixer_track": 0,
+          "color": 4284245354,
+          "plugin": "MPC Beats",
+          "plugin_user_name": "MPC Rich Swell Configured",
+          "reported_parameter_count": 4240,
+          "target_fingerprint": "02131f9dd1c26e077fa808aaf70447c1615893009860e349bb7866b76c749160",
+          "channel_fingerprint": "8ab411a661bb1e404915312595940f0114ad232c6abead2ba90446dca86022cf"
+        }
+      ],
+      "channel_index": 13,
+      "channel": {
+        "index": 13,
+        "index_scope": "global",
+        "name": "MPC Rich Swell Configured",
+        "volume": 0.78125,
+        "pan": 0.0,
+        "pitch": 0.0,
+        "pitch_semitones": 0,
+        "pitch_range": 2,
+        "muted": false,
+        "solo": false,
+        "selected": false,
+        "type": 2,
+        "type_name": "generator_plugin",
+        "mixer_track": 0,
+        "color": 4284245354,
+        "plugin": "MPC Beats",
+        "plugin_user_name": "MPC Rich Swell Configured",
+        "reported_parameter_count": 4240,
+        "target_fingerprint": "02131f9dd1c26e077fa808aaf70447c1615893009860e349bb7866b76c749160",
+        "channel_fingerprint": "8ab411a661bb1e404915312595940f0114ad232c6abead2ba90446dca86022cf"
+      },
+      "message": "The requested generator is loaded in the new channel."
+    }
+  },
+  "fl_extract_generator_preset": {
+    "source": "preset-version-correction.jsonl",
+    "result": {
+      "status": "exported",
+      "preset_path": "C:\\CodexApp\\fruity-commander-2000\\.local\\proof\\MPC Rich Swell Configured.fst",
+      "channel_index": 5,
+      "source_project": "C:\\CodexApp\\fruity-commander-2000\\.local\\proof\\Native Product Qualification.flp",
+      "source_sha256": "443d66365fb9943f13d81113c3b4d11587798521de05599ccd46b18261614448",
+      "preset_sha256": "ec768638565e3c2900fe798ef04310596311b1d03829d5dda75c14185e861836",
+      "size_bytes": 764,
+      "state_basis": "saved_project_file",
+      "live_plugin_state_verified": false,
+      "external_assets_copied": false,
+      "message": "Saved generator state exported. External plugin files remain referenced; load and inspect to verify setup."
+    }
+  },
+  "fl_replace_automation_points": {
+    "source": "automation-revision-undo-qualified.jsonl",
+    "result": {
+      "status": "revised",
+      "verification": "native_points_links_and_placements_readback",
+      "project_saved": false,
+      "automatic_retry": false,
+      "session_fingerprint": "00000000000059b018d9553bfe16add8",
+      "source_event": 131072,
+      "native": {
+        "process_id": 22960,
+        "thread_id": 37644,
+        "operation": 8,
+        "created_channel": -1,
+        "source_event": -1,
+        "stage": 3,
+        "created_clip": -1,
+        "native_callback_completed": true
+      },
+      "observed": {
+        "arrangement_index": 0,
+        "clips": [
+          {
+            "index": 0,
+            "start_tick": 0,
+            "source_id": 151552,
+            "length_tick": 1536,
+            "track": 2,
+            "muted": false,
+            "source_range_bytes": "000080bf000080bf"
+          },
+          {
+            "index": 1,
+            "start_tick": 0,
+            "source_id": 1342263296,
+            "length_tick": 1536,
+            "track": 1,
+            "muted": false,
+            "source_range_bytes": "ffffffffffffffff"
+          }
+        ],
+        "automation": [
+          {
+            "channel_index": 2,
+            "source_event": 131072,
+            "points": [
+              {
+                "time_qn": 0.0,
+                "value": 0.15000000596046448,
+                "tension": 0.0,
+                "curve": 0
+              },
+              {
+                "time_qn": 4.0,
+                "value": 0.6000000238418579,
+                "tension": 0.0,
+                "curve": 0
+              },
+              {
+                "time_qn": 12.0,
+                "value": 0.4000000059604645,
+                "tension": 0.0,
+                "curve": 0
+              },
+              {
+                "time_qn": 16.0,
+                "value": 0.25,
+                "tension": 0.0,
+                "curve": 0
+              }
+            ]
+          }
+        ],
+        "links": [
+          {
+            "source_event": 131072,
+            "target_event": 102474
+          }
+        ],
+        "time_selection": {
+          "start_tick": -1,
+          "end_tick": -1,
+          "active": false
+        },
+        "project": {
+          "process_id": 22960,
+          "path": "C:/CodexApp/fruity-commander-2000/.local/proof/MCP Fresh Instrument End-to-End.flp",
+          "engine_sha256": "bc3637c3e41694c820865e757d88a42bdc15b6db4011582a2ef8f4d1b05a2d95",
+          "identity_basis": "qualified_native_project_path_read"
+        },
+        "verification": "native_object_readback"
+      },
+      "automation": {
+        "channel_index": 2,
+        "source_event": 131072,
+        "points": [
+          {
+            "time_qn": 0.0,
+            "value": 0.15000000596046448,
+            "tension": 0.0,
+            "curve": 0
+          },
+          {
+            "time_qn": 4.0,
+            "value": 0.6000000238418579,
+            "tension": 0.0,
+            "curve": 0
+          },
+          {
+            "time_qn": 12.0,
+            "value": 0.4000000059604645,
+            "tension": 0.0,
+            "curve": 0
+          },
+          {
+            "time_qn": 16.0,
+            "value": 0.25,
+            "tension": 0.0,
+            "curve": 0
+          }
+        ]
+      },
+      "message": "Revised the shared automation source; its links and Playlist copies are preserved."
+    }
+  },
+  "fl_place_pattern_clip": {
+    "source": "fresh-instrument-end-to-end.jsonl",
+    "result": {
+      "status": "placed",
+      "verification": "native_playlist_readback",
+      "project_saved": false,
+      "automatic_retry": false,
+      "pattern": {
+        "pattern": 1,
+        "name": "Fresh MPC - Notes and Filter",
+        "color": 4282929494,
+        "length": 64,
+        "current": true,
+        "selected": true,
+        "default": false
+      },
+      "ppq": 96,
+      "session_fingerprint": "0000000000009fac18d955332b59d440",
+      "native": {
+        "process_id": 40876,
+        "thread_id": 42092,
+        "operation": 5,
+        "created_channel": -1,
+        "source_event": -1,
+        "stage": 4,
+        "created_clip": 0,
+        "native_callback_completed": true
+      },
+      "observed": {
+        "arrangement_index": 0,
+        "clips": [
+          {
+            "index": 0,
+            "start_tick": 0,
+            "source_id": 1342263296,
+            "length_tick": 1536,
+            "track": 1,
+            "muted": false,
+            "source_range_bytes": "ffffffffffffffff"
+          }
+        ],
+        "automation": [],
+        "links": [],
+        "time_selection": {
+          "start_tick": -1,
+          "end_tick": -1,
+          "active": false
+        },
+        "project": {
+          "process_id": 40876,
+          "path": "C:\\CodexApp\\fruity-commander-2000\\.local\\proof\\MCP Fresh Instrument End-to-End.flp",
+          "engine_sha256": "bc3637c3e41694c820865e757d88a42bdc15b6db4011582a2ef8f4d1b05a2d95",
+          "identity_basis": "qualified_native_project_path_read"
+        },
+        "verification": "native_object_readback"
+      },
+      "clip": {
+        "index": 0,
+        "start_tick": 0,
+        "source_id": 1342263296,
+        "length_tick": 1536,
+        "track": 1,
+        "muted": false,
+        "source_range_bytes": "ffffffffffffffff"
+      }
+    }
+  },
+  "fl_create_automation_clip": {
+    "source": "targeting-trace-repro.jsonl",
+    "result": {
+      "status": "created",
+      "project_saved": false,
+      "automatic_retry": false,
+      "verification": "native_objects_and_link_readback",
+      "session_fingerprint": "0000000000004f4018d96bbbd4cd6804",
+      "target_event": 102474,
+      "ppq": 96,
+      "native": {
+        "process_id": 20288,
+        "thread_id": 16568,
+        "operation": 4,
+        "created_channel": 5,
+        "source_event": 327680,
+        "stage": 4,
+        "created_clip": 4,
+        "native_callback_completed": true
+      },
+      "observed": {
+        "arrangement_index": 0,
+        "clips": [
+          {
+            "index": 0,
+            "start_tick": 0,
+            "source_id": 151552,
+            "length_tick": 1536,
+            "track": 2,
+            "muted": false,
+            "source_range_bytes": "000080bf000080bf"
+          },
+          {
+            "index": 1,
+            "start_tick": 0,
+            "source_id": 1342263296,
+            "length_tick": 1536,
+            "track": 1,
+            "muted": false,
+            "source_range_bytes": "ffffffffffffffff"
+          },
+          {
+            "index": 2,
+            "start_tick": 1536,
+            "source_id": 217088,
+            "length_tick": 768,
+            "track": 4,
+            "muted": false,
+            "source_range_bytes": "000080bf000080bf"
+          },
+          {
+            "index": 3,
+            "start_tick": 1536,
+            "source_id": 1342328832,
+            "length_tick": 768,
+            "track": 3,
+            "muted": false,
+            "source_range_bytes": "ffffffffffffffff"
+          },
+          {
+            "index": 4,
+            "start_tick": 2304,
+            "source_id": 348160,
+            "length_tick": 768,
+            "track": 5,
+            "muted": false,
+            "source_range_bytes": "000080bf000080bf"
+          },
+          {
+            "index": 5,
+            "start_tick": 2304,
+            "source_id": 282624,
+            "length_tick": 768,
+            "track": 5,
+            "muted": false,
+            "source_range_bytes": "000080bf000080bf"
+          }
+        ],
+        "automation": [
+          {
+            "channel_index": 2,
+            "source_event": 131072,
+            "points": [
+              {
+                "time_qn": 0.0,
+                "value": 0.15000000596046448,
+                "tension": 0.0,
+                "curve": 0
+              },
+              {
+                "time_qn": 4.0,
+                "value": 0.6000000238418579,
+                "tension": 0.0,
+                "curve": 0
+              },
+              {
+                "time_qn": 12.0,
+                "value": 0.4000000059604645,
+                "tension": 0.0,
+                "curve": 0
+              },
+              {
+                "time_qn": 16.0,
+                "value": 0.25,
+                "tension": 0.0,
+                "curve": 0
+              }
+            ]
+          },
+          {
+            "channel_index": 3,
+            "source_event": 196608,
+            "points": [
+              {
+                "time_qn": 0.0,
+                "value": 0.30000001192092896,
+                "tension": 0.0,
+                "curve": 0
+              },
+              {
+                "time_qn": 8.0,
+                "value": 0.699999988079071,
+                "tension": 0.0,
+                "curve": 0
+              }
+            ]
+          },
+          {
+            "channel_index": 4,
+            "source_event": 262144,
+            "points": [
+              {
+                "time_qn": 0.0,
+                "value": 0.4000000059604645,
+                "tension": 0.0,
+                "curve": 0
+              },
+              {
+                "time_qn": 8.0,
+                "value": 0.5,
+                "tension": 0.0,
+                "curve": 0
+              }
+            ]
+          },
+          {
+            "channel_index": 5,
+            "source_event": 327680,
+            "points": [
+              {
+                "time_qn": 0.0,
+                "value": 0.4000000059604645,
+                "tension": 0.0,
+                "curve": 0
+              },
+              {
+                "time_qn": 8.0,
+                "value": 0.5,
+                "tension": 0.0,
+                "curve": 0
+              }
+            ]
+          }
+        ],
+        "links": [
+          {
+            "source_event": 131072,
+            "target_event": 102474
+          },
+          {
+            "source_event": 196608,
+            "target_event": 102474
+          },
+          {
+            "source_event": 262144,
+            "target_event": 102474
+          },
+          {
+            "source_event": 327680,
+            "target_event": 102474
+          }
+        ],
+        "time_selection": {
+          "start_tick": -1,
+          "end_tick": -1,
+          "active": false
+        },
+        "project": {
+          "process_id": 20288,
+          "path": "C:\\CodexApp\\fruity-commander-2000\\.local\\proof\\Targeting Regression.flp",
+          "engine_sha256": "bc3637c3e41694c820865e757d88a42bdc15b6db4011582a2ef8f4d1b05a2d95",
+          "identity_basis": "qualified_native_project_path_read"
+        },
+        "verification": "native_object_readback"
+      },
+      "automation": {
+        "channel_index": 5,
+        "source_event": 327680,
+        "points": [
+          {
+            "time_qn": 0.0,
+            "value": 0.4000000059604645,
+            "tension": 0.0,
+            "curve": 0
+          },
+          {
+            "time_qn": 8.0,
+            "value": 0.5,
+            "tension": 0.0,
+            "curve": 0
+          }
+        ]
+      },
+      "clip": {
+        "index": 4,
+        "start_tick": 2304,
+        "source_id": 348160,
+        "length_tick": 768,
+        "track": 5,
+        "muted": false,
+        "source_range_bytes": "000080bf000080bf"
+      },
+      "message": "The native Automation Clip, parameter link and Playlist placement were read back."
+    }
+  },
+  "fl_list_installed_generators": {
+    "source": "plugin-loading-setup.jsonl",
+    "result": {
+      "generators": [
+        {
+          "name": "MPC Beats",
+          "preset_path": "C:\\Users\\TestUser\\Documents\\Image-Line\\FL Studio\\Presets\\Plugin database\\Installed\\Generators\\New\\MPC Beats.fst",
+          "expected_plugin_name": "MPC Beats",
+          "vendor": "Akai Professional",
+          "binary_path": "C:\\Program Files\\Steinberg\\VstPlugins\\MPC Beats64.dll",
+          "format": "VST / 64 bit",
+          "evidence": "FL_plugin_database_entry_not_loaded_instance"
+        },
+        {
+          "name": "MPC Beats",
+          "preset_path": "C:\\Users\\TestUser\\Documents\\Image-Line\\FL Studio\\Presets\\Plugin database\\Installed\\Generators\\VST\\MPC Beats.fst",
+          "expected_plugin_name": "MPC Beats",
+          "vendor": "Akai Professional",
+          "binary_path": "C:\\Program Files\\Steinberg\\VstPlugins\\MPC Beats64.dll",
+          "format": "VST / 64 bit",
+          "evidence": "FL_plugin_database_entry_not_loaded_instance"
+        }
+      ],
+      "searched_roots": [
+        "C:\\Users\\TestUser\\Documents\\Image-Line\\FL Studio\\Presets\\Plugin database\\Installed\\Generators",
+        "C:\\Users\\TestUser\\Documents\\Image-Line\\FL Studio\\Presets\\Plugin database\\Generators",
+        "C:\\Program Files\\Image-Line\\FL Studio 2026\\Data\\Patches\\Plugin database\\Installed\\Generators",
+        "C:\\Program Files\\Image-Line\\FL Studio 2026\\Data\\Patches\\Plugin database\\Generators"
+      ]
+    }
+  },
+  "piano_roll_start_session": {
+    "source": "startup-qualification.jsonl",
+    "result": {
+      "ready": true,
+      "verification": "signed_host_bootstrap_receipt",
+      "script_path": "C:\\Users\\TestUser\\Documents\\Image-Line\\FL Studio\\Settings\\Piano roll scripts\\Postfader\\Postfader_Apply.PYSCRIPT",
+      "channel_index": 5,
+      "pattern_number": 3,
+      "session_fingerprint": "0000000000008a9c18d94bf92171b530"
+    }
+  },
+  "fl_set_playlist_time_selection": {
+    "source": "joint-playback-selected.jsonl",
+    "result": {
+      "status": "selected",
+      "before": {
+        "owner": 120694576,
+        "start_tick": -1,
+        "end_tick": -1,
+        "active": false
+      },
+      "ppq": 96,
+      "project_saved": false,
+      "automatic_retry": false,
+      "native": {
+        "process_id": 41732,
+        "thread_id": 18388,
+        "operation": 6,
+        "created_channel": -1,
+        "source_event": -1,
+        "stage": 2,
+        "created_clip": -1,
+        "native_callback_completed": true
+      },
+      "after": {
+        "owner": 120694576,
+        "start_tick": 6144,
+        "end_tick": 9216,
+        "active": true
+      },
+      "verification": "native_playlist_selection_readback"
+    }
+  }
+}

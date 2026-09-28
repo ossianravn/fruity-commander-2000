@@ -1,0 +1,2 @@
+# Inspected PostFader 10.0.0; external dependency, not maintained source.
+postfader-fl-studio-mcp @ git+https://github.com/synopsys0/postfader-fl-studio-mcp.git@480bedd1cde98fe272c5e02f66efd7aa83315d0b

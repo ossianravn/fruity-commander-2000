@@ -1,0 +1,113 @@
+{
+  "file": {
+    "source": "note-contract-modern-live.json",
+    "tool": "fl_get_project_file",
+    "result": {
+      "process_id": 29564,
+      "path": "C:\\CodexApp\\fruity-commander-2000\\.local\\proof\\MCP Fresh Instrument End-to-End.flp",
+      "engine_sha256": "bc3637c3e41694c820865e757d88a42bdc15b6db4011582a2ef8f4d1b05a2d95",
+      "identity_basis": "qualified_native_project_path_read",
+      "saved_file": {
+        "size_bytes": 51199,
+        "modified_ns": 1790580368909630900,
+        "sha256": "42499cde32d13ea0bb9e718a60d4063a2b758fda0d40c567712e4772c16de0f7"
+      },
+      "verification": "saved_file_snapshot_only",
+      "message": "This inspects disk; it does not prove unsaved host edits are persisted."
+    }
+  },
+  "save": {
+    "source": "codex-followup-saved.json",
+    "tool": "fl_save_project",
+    "result": {
+      "process_id": 42932,
+      "path": "C:/CodexApp/fruity-commander-2000/.local/proof/MCP Fresh Instrument End-to-End.flp",
+      "engine_sha256": "bc3637c3e41694c820865e757d88a42bdc15b6db4011582a2ef8f4d1b05a2d95",
+      "identity_basis": "qualified_native_project_path_read",
+      "session_fingerprint": "000000000000a7b418d96a39977a2998",
+      "project_saved": true,
+      "status": "saved",
+      "verification": "host_save_and_completed_file_write",
+      "automatic_retry": false,
+      "before_file": {
+        "size_bytes": 49672,
+        "modified_ns": 1790579222193777300,
+        "sha256": "1a4de2fa8a0d8e8379b4dfe7c54251e68282bb4a1645bc971a8615b2121fa632"
+      },
+      "host": {
+        "command": "project.save",
+        "dispatch_result": 511,
+        "dirty_before": 1,
+        "dirty_after": 0,
+        "session_fingerprint": "000000000000a7b418d96a39977a2998",
+        "session_precondition_applied": true,
+        "expected_before_applied": false
+      },
+      "after_file": {
+        "size_bytes": 51199,
+        "modified_ns": 1790580368909630900,
+        "sha256": "42499cde32d13ea0bb9e718a60d4063a2b758fda0d40c567712e4772c16de0f7"
+      },
+      "message": "FL acknowledged save and the current project's complete FLP file was rewritten. Reopening was not tested."
+    }
+  },
+  "save_as": {
+    "source": "save-as-unicode.jsonl",
+    "tool": "fl_save_project_as",
+    "result": {
+      "destination_path": "C:\\CodexApp\\fruity-commander-2000\\.local\\proof\\Stillwater MCP Unicode Æøå.flp",
+      "before_identity": {
+        "process_id": 35484,
+        "path": "C:\\Users\\TestUser\\Documents\\Image-Line\\FL Studio\\Projects\\Fruity Commander Ambient\\Stillwater.flp",
+        "engine_sha256": "bc3637c3e41694c820865e757d88a42bdc15b6db4011582a2ef8f4d1b05a2d95",
+        "identity_basis": "qualified_native_project_path_read"
+      },
+      "before_file": null,
+      "session_fingerprint": "0000000000008a9c18d94cfd9aa49508",
+      "project_saved": true,
+      "status": "saved",
+      "verification": "native_path_and_completed_file_write",
+      "automatic_retry": false,
+      "observed_identity": {
+        "process_id": 35484,
+        "path": "C:\\CodexApp\\fruity-commander-2000\\.local\\proof\\Stillwater MCP Unicode Æøå.flp",
+        "engine_sha256": "bc3637c3e41694c820865e757d88a42bdc15b6db4011582a2ef8f4d1b05a2d95",
+        "identity_basis": "qualified_native_project_path_read"
+      },
+      "after_file": {
+        "size_bytes": 58554,
+        "modified_ns": 1790547745412748500,
+        "sha256": "6199a1f26a48c0814b0d25126c189fa4b952ca550fe45245c92c61a9e39a8ea9"
+      },
+      "message": "FL adopted the requested path and wrote a complete FLP. Reopening was not tested."
+    }
+  },
+  "save_as_unknown": {
+    "source": "save-as-qualification.jsonl",
+    "tool": "fl_save_project_as",
+    "result": {
+      "destination_path": "C:\\CodexApp\\fruity-commander-2000\\.local\\proof\\Stillwater Save As Æøå.flp",
+      "before_identity": {
+        "process_id": 35484,
+        "path": "C:\\Users\\TestUser\\Documents\\Image-Line\\FL Studio\\Projects\\Fruity Commander Ambient\\Stillwater.flp",
+        "engine_sha256": "bc3637c3e41694c820865e757d88a42bdc15b6db4011582a2ef8f4d1b05a2d95",
+        "identity_basis": "qualified_native_project_path_read"
+      },
+      "before_file": null,
+      "session_fingerprint": "0000000000008a9c18d94cfd9aa49508",
+      "project_saved": false,
+      "status": "unknown",
+      "verification": "none",
+      "automatic_retry": false,
+      "observed_identity": {
+        "process_id": 35484,
+        "path": "C:\\Users\\TestUser\\Documents\\Image-Line\\FL Studio\\Projects\\Fruity Commander Ambient\\Stillwater.flp",
+        "engine_sha256": "bc3637c3e41694c820865e757d88a42bdc15b6db4011582a2ef8f4d1b05a2d95",
+        "identity_basis": "qualified_native_project_path_read"
+      },
+      "message": "FL opened an unexpected dialog after Save As; inspect before continuing",
+      "submitted": true,
+      "next_action": "Inspect FL's current path, destination file and any dialog; do not automatically resend Save As."
+    }
+  }
+}

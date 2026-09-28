@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.venv/
+.local/
+
+# Local agent instructions, plans and development evidence.
+AGENTS.md
+/IMPLEMENTATION.md
+/TEST_RESULTS.md
+/.dev-docs/
+/scripts/qualification_client.py
+/scripts/qualify_modern_journey.py
+/scripts/codex_discovery_probe.py
+/scripts/discovery_metrics.py

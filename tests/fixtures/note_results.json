@@ -1,0 +1,240 @@
+{
+  "piano_roll_create_pattern": {
+    "pattern_number": 2,
+    "channel_index": 1,
+    "status": "applied",
+    "project_saved": false,
+    "verification": "host_readback",
+    "selection": {
+      "schema_version": "1.0",
+      "applied_at": "2026-09-28T07:21:46.110546Z",
+      "bridge_command": "pattern.select",
+      "verified": true,
+      "verification_summary": "FL reported pattern 2 current on a later idle tick.",
+      "verification_basis": "readback_on_a_later_fl_idle_tick",
+      "undo_point_created": null,
+      "project_saved": false,
+      "session_fingerprint": "000000000000a7b418d96a39977a2998",
+      "session_precondition_applied": true,
+      "expected_before_applied": false,
+      "warnings": [],
+      "requested_pattern_number": 2,
+      "before_pattern_number": 1,
+      "after_pattern_number": 2
+    },
+    "identity": {
+      "schema_version": "1.0",
+      "applied_at": "2026-09-28T07:21:46.260758Z",
+      "bridge_command": "pattern.set_identity",
+      "verified": true,
+      "verification_summary": "FL read every requested pattern identity field back on a later tick.",
+      "verification_basis": "readback_on_a_later_fl_idle_tick",
+      "undo_point_created": true,
+      "project_saved": false,
+      "session_fingerprint": "000000000000a7b418d96a39977a2998",
+      "session_precondition_applied": true,
+      "expected_before_applied": false,
+      "warnings": [],
+      "pattern_number": 2,
+      "requested_name": "Codex Client Qualification",
+      "requested_color": null,
+      "before": {
+        "name": "Pattern 2",
+        "color": 4282929494
+      },
+      "after": {
+        "name": "Codex Client Qualification",
+        "color": 4282929494
+      },
+      "name_verified": true,
+      "color_verified": null
+    },
+    "request_id": "c8c0aba6e864a4bb1e19b32b47bc4d7a",
+    "observed": {
+      "status": "applied",
+      "ppq": 96,
+      "notes": [
+        {
+          "number": 60,
+          "time": 0,
+          "length": 336,
+          "group": 0,
+          "pan": 0.5,
+          "velocity": 0.4000000059604645,
+          "release": 0.5,
+          "color": 0,
+          "fcut": 0.501960813999176,
+          "fres": 0.501960813999176,
+          "pitchofs": 0,
+          "slide": false,
+          "porta": false,
+          "muted": false,
+          "selected": false,
+          "repeats": 0
+        },
+        {
+          "number": 64,
+          "time": 384,
+          "length": 336,
+          "group": 0,
+          "pan": 0.5,
+          "velocity": 0.4000000059604645,
+          "release": 0.5,
+          "color": 0,
+          "fcut": 0.501960813999176,
+          "fres": 0.501960813999176,
+          "pitchofs": 0,
+          "slide": false,
+          "porta": false,
+          "muted": false,
+          "selected": false,
+          "repeats": 0
+        }
+      ],
+      "markers": [
+        {
+          "time": 768,
+          "name": "Length",
+          "mode": 6,
+          "tsnum": 4,
+          "tsden": 4
+        }
+      ],
+      "phrase_length_qn": 8.0,
+      "message": "Created notes and phrase extent inspected in FL's score runtime.",
+      "added_count": 2,
+      "requested_phrase_length_qn": 8.0,
+      "request_id": "c8c0aba6e864a4bb1e19b32b47bc4d7a"
+    },
+    "message": "Created notes and phrase extent inspected in FL's score runtime."
+  },
+  "piano_roll_replace_range": {
+    "request_id": "24920d6731b297895fbf02941b46d26e",
+    "channel_index": 1,
+    "pattern_number": 2,
+    "project_saved": false,
+    "verification": "host_readback",
+    "status": "applied",
+    "observed": {
+      "status": "applied",
+      "ppq": 96,
+      "removed_count": 1,
+      "added_count": 1,
+      "untouched_notes_preserved": true,
+      "notes": [
+        {
+          "number": 60,
+          "time": 0,
+          "length": 336,
+          "group": 0,
+          "pan": 0.5,
+          "velocity": 0.3984375,
+          "release": 0.5,
+          "color": 0,
+          "fcut": 0.501960813999176,
+          "fres": 0.501960813999176,
+          "pitchofs": 0,
+          "slide": false,
+          "porta": false,
+          "muted": false,
+          "selected": false,
+          "repeats": 0
+        },
+        {
+          "number": 65,
+          "time": 384,
+          "length": 336,
+          "group": 0,
+          "pan": 0.5,
+          "velocity": 0.4000000059604645,
+          "release": 0.5,
+          "color": 0,
+          "fcut": 0.501960813999176,
+          "fres": 0.501960813999176,
+          "pitchofs": 0,
+          "slide": false,
+          "porta": false,
+          "muted": false,
+          "selected": false,
+          "repeats": 0
+        }
+      ],
+      "markers_preserved": true,
+      "markers": [
+        {
+          "time": 768,
+          "name": "Length",
+          "mode": 6,
+          "tsnum": 4,
+          "tsden": 4
+        }
+      ],
+      "message": "Range and untouched notes inspected in FL's score runtime.",
+      "request_id": "24920d6731b297895fbf02941b46d26e"
+    },
+    "message": "Range and untouched notes inspected in FL's score runtime."
+  },
+  "piano_roll_inspect_score": {
+    "request_id": "a079f83ef73e275ef165102d20f718a6",
+    "channel_index": 1,
+    "pattern_number": 2,
+    "project_saved": false,
+    "verification": "host_readback",
+    "status": "observed",
+    "observed": {
+      "status": "observed",
+      "ppq": 96,
+      "notes": [
+        {
+          "number": 60,
+          "time": 0,
+          "length": 336,
+          "group": 0,
+          "pan": 0.5,
+          "velocity": 0.3984375,
+          "release": 0.5,
+          "color": 0,
+          "fcut": 0.501960813999176,
+          "fres": 0.501960813999176,
+          "pitchofs": 0,
+          "slide": false,
+          "porta": false,
+          "muted": false,
+          "selected": false,
+          "repeats": 0
+        },
+        {
+          "number": 65,
+          "time": 384,
+          "length": 336,
+          "group": 0,
+          "pan": 0.5,
+          "velocity": 0.3984375,
+          "release": 0.5,
+          "color": 0,
+          "fcut": 0.501960813999176,
+          "fres": 0.501960813999176,
+          "pitchofs": 0,
+          "slide": false,
+          "porta": false,
+          "muted": false,
+          "selected": false,
+          "repeats": 0
+        }
+      ],
+      "markers": [
+        {
+          "time": 768,
+          "name": "Length",
+          "mode": 6,
+          "tsnum": 4,
+          "tsden": 4
+        }
+      ],
+      "phrase_length_qn": 8.0,
+      "message": "Notes and timeline markers inspected in FL's score runtime.",
+      "request_id": "a079f83ef73e275ef165102d20f718a6"
+    },
+    "message": "Notes and timeline markers inspected in FL's score runtime."
+  }
+}
