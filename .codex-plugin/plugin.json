@@ -8,7 +8,7 @@
   "interface": {
     "displayName": "Fruity Commander 2000",
     "shortDescription": "Editable notes, instruments and automation in FL Studio",
-    "longDescription": "Create and revise editable patterns, load instruments, control parameters and work with native automation through a local Fruity Commander MCP connection to FL Studio.",
+    "longDescription": "Create and revise editable patterns, import sounds, load instruments and mixer effects, control parameters and work with native automation through a local Fruity Commander MCP connection to FL Studio.",
     "developerName": "Fruity Commander 2000",
     "category": "Productivity",
     "capabilities": ["Write"],

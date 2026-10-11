@@ -27,10 +27,13 @@ class CapabilityTest(unittest.TestCase):
         self.assertEqual(rows['raw_audio_buffer_access'].status, 'unavailable')
         self.assertTrue(rows['piano_roll_note_snapshot'].mutates_project)
         self.assertEqual(rows['project_save'].status, 'available')
+        self.assertEqual(rows['native_mixer_effect_loading'].access_path,
+                         'fl_list_installed_effects / fl_add_mixer_effect')
 
     def test_missing_helper_leaves_independent_reads_and_save_available(self):
         rows = self.rows(identity={"engine_sha256": "qualified"}, error=None, helper_present=False)
         self.assertEqual(rows['native_pattern_placement'].status, 'unvalidated')
+        self.assertEqual(rows['native_mixer_effect_loading'].status, 'unvalidated')
         self.assertIn('build_native.ps1', ' '.join(rows['native_pattern_placement'].limitations))
         self.assertEqual(rows['playlist_clip_enumeration'].limitations, [])
         self.assertEqual(rows['project_save'].status, 'available')

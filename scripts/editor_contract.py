@@ -21,6 +21,10 @@ def focused_target(channel_index, pattern_number, *, session_fingerprint=None,
         from scripts.windows_shortcut import focus_fl_window
 
         focus_fl_window()
+    elif sys.platform == "darwin":
+        from scripts.mac_host import focus_fl
+
+        focus_fl()
     return _original_target(channel_index, pattern_number,
                             session_fingerprint=session_fingerprint,
                             target_fingerprint=target_fingerprint,

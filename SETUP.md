@@ -1,7 +1,7 @@
 # Local Windows setup
 
-These instructions are for Windows. macOS needs additional host integration and
-qualification and is not currently supported.
+These instructions are for Windows. For a Mac, use the
+[macOS preview setup](SETUP-macOS.md); several owned operations are Windows-only.
 
 This installation is qualified on FL Studio Producer Edition 26.1.6 build 5639
 and Codex 0.153.2. Other builds are untested.
@@ -172,7 +172,7 @@ Do this migration once, after plugin installation; skip it on later plugin updat
 A same-name manual `enabled=false` entry also suppresses plugin tools, so remove
 the old entry instead of leaving it disabled. Start a new Codex chat to load the
 updated skill and connection. Ask it to inspect the current FL project without
-editing; a connection should discover157 tools and return the actual project state.
+editing; a connection should discover 159 tools and return the actual project state.
 Keep the working runtime in place. If migration fails, remove the plugin with
 `codex plugin remove fruity-commander-2000@local-personal` and restore the saved
 manual settings using the registration example below.
@@ -180,6 +180,42 @@ manual settings using the registration example below.
 Installation and a subsequent cache update both passed in fresh Codex sessions
 outside this repository on the qualified workstation.
 This does not qualify a fresh Windows/FL/MIDI installation or refresh an old chat.
+
+### Install the plugin in Claude Code
+
+These steps work with **Claude Code in the Claude desktop app**, using a local
+Windows session. Complete **Installation once** above on your own FL workstation,
+then run this command from your checkout:
+
+```powershell
+.\.venv\Scripts\python.exe -B -m scripts.package_plugin --archive --midi-port 'Fruity Commander'
+```
+
+In Claude's **Customize → Plugins → Upload local plugin**, select
+`.local/plugins/fruity-commander-2000.zip` from this checkout. The ZIP contains
+`.claude-plugin/plugin.json`, `.mcp.json`, the workflow skill/references and icon
+at its root. Upload the generated ZIP itself; do not zip the enclosing directory.
+
+In the desktop app, open the **Code** tab and start a **Local** session on this
+Windows/FL workstation, signed into the same Claude account. Account plugins sync
+at startup in Claude Code 2.1.273 or later. Use `/mcp` to check the Fruity Commander
+connection, then ask it to inspect the current FL project without edits. The skill
+is `/fruity-commander-2000:fruity-commander`. Release other clients' active Fruity
+Commander MIDI connections when switching; the bridge has one active owner.
+
+The repository's [Claude manifest](.claude-plugin/plugin.json) supplies the plugin
+metadata. Packaging adds the skill and MCP configuration with paths for your
+installation. Each user must build their own ZIP after local runtime setup;
+another user's ZIP points to that user's runtime. Keep your checkout, environment
+and native helper in place. Use `--user-data-dir` for a custom FL data folder.
+Regenerate the ZIP and reinstall it after moving the runtime or updating the plugin.
+
+Archive validation and component discovery pass; account upload/sync and an FL
+connection through that installation still need verification. See
+[Claude's plugin guide](https://support.claude.com/en/articles/13837440-use-plugins-in-claude).
+
+For a session-only terminal load, use `claude --plugin-dir` with the generated
+bundle directory. That is a different route from uploading the ZIP.
 
 ### Connect an MCP client
 
@@ -208,7 +244,7 @@ codex mcp get fruity-commander
 ```
 
 These registration commands passed locally. Fresh SDK and actual Codex clients
-discover 157 tools. An already-running chat can retain an old catalog or a closed
+discover 159 tools. An already-running chat can retain an old catalog or a closed
 transport; restart its MCP connection after launcher updates. This is separate
 from reloading FL's controller after controller-source updates.
 

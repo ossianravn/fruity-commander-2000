@@ -12,6 +12,7 @@ try {
         "$root/native/helper.cpp" "$root/native/score_host.cpp" "$root/native/engine_identity.cpp" `
         "$root/native/plugin_host.cpp" "$root/native/automation_host.cpp" "$root/native/playlist_host.cpp" `
         "$root/native/plugin_state.cpp" "$root/native/project_host.cpp" "$root/native/audio_clip_host.cpp" `
+        "$root/native/effect_host.cpp" `
         /link user32.lib bcrypt.lib /OUT:FruityCommanderHost.dll
     if ($LASTEXITCODE) { throw 'Native helper compilation failed' }
     & cl.exe /nologo /W4 /WX /O2 /MT /std:c++17 "$root/native/test_host.cpp" `

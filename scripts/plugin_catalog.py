@@ -1,10 +1,22 @@
-"""Discover FL's generator preset entries without treating them as loaded plugins."""
+"""Discover installed FL presets without treating them as loaded plugins."""
 
 from pathlib import Path
 
 from fl_studio_mcp.host_config import fl_studio_user_data_dir
 
 from scripts.windows_project import ProjectReader
+
+
+def validate_preset(preset_path, expected_plugin_name):
+    path = Path(preset_path)
+    if not path.is_absolute() or path.suffix.lower() != ".fst" or not path.is_file():
+        raise ValueError("Provide an existing absolute .fst plugin preset path")
+    with path.open("rb") as stream:
+        if stream.read(4) != b"FLhd":
+            raise ValueError("The requested file is not an FL preset")
+    if not expected_plugin_name.strip():
+        raise ValueError("The expected loaded plugin name is required for identity verification")
+    return path.resolve()
 
 
 def preset_metadata(path):
@@ -43,11 +55,19 @@ def generator_entries(roots, query=""):
     return entries
 
 
-def list_generators(query=""):
+def list_presets(kind, query=""):
     user = fl_studio_user_data_dir() / "Presets/Plugin database"
     with ProjectReader() as reader:
         factory = reader.engine.parent / "Data/Patches/Plugin database"
-    roots = [root / kind for root in (user, factory)
-             for kind in ("Installed/Generators", "Generators")]
-    return {"generators": generator_entries(roots, query),
+    roots = [root / folder for root in (user, factory)
+             for folder in (f"Installed/{kind}", kind)]
+    return {kind.lower(): generator_entries(roots, query),
             "searched_roots": [str(root) for root in roots]}
+
+
+def list_generators(query=""):
+    return list_presets("Generators", query)
+
+
+def list_effects(query=""):
+    return list_presets("Effects", query)

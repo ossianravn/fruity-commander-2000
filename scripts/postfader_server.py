@@ -44,11 +44,18 @@ def _prepare_server():
 
         creative._trigger_piano_roll_shortcut = trigger_owned_score_script
         piano_roll._trigger_piano_roll_shortcut = trigger_owned_score_script
+    elif sys.platform == "darwin":
+        # Target FL by bundle identifier and verify it is frontmost before the key.
+        from scripts.mac_host import trigger_run_last_script
+
+        creative._trigger_piano_roll_shortcut = trigger_run_last_script
+        piano_roll._trigger_piano_roll_shortcut = trigger_run_last_script
 
     # Register tools only after rebuilding their return model.
     from fl_studio_mcp import mcp_server
-    from scripts.server_guidance import INSTRUCTIONS
-    mcp_server.mcp._lowlevel_server.instructions = INSTRUCTIONS
+    from scripts.host_platform import family
+    from scripts.server_guidance import instructions
+    mcp_server.mcp._lowlevel_server.instructions = instructions(family())
 
     from scripts.range_tool import register
     from scripts.pattern_tool import register as register_patterns
@@ -68,6 +75,7 @@ def _prepare_server():
     from scripts.sample_import import register as register_samples
     from scripts.audio_clip_tool import register as register_audio_clip
     from scripts.splice_tools import register as register_splice
+    from scripts.effect_loading import register as register_effects
 
     register(mcp_server)
     register_patterns(mcp_server)
@@ -90,6 +98,7 @@ def _prepare_server():
     register_samples(mcp_server)
     register_audio_clip(mcp_server)
     register_splice(mcp_server)
+    register_effects(mcp_server)
 
     return mcp_server
 

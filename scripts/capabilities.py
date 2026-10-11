@@ -3,6 +3,8 @@
 from fl_studio_mcp import readonly_inspector
 from fl_studio_mcp.contracts import CapabilityEvidence, CapabilityRecord
 
+from scripts.host_platform import family
+from scripts.mac_capabilities import macos_report
 from scripts.native_host import DLL_PATH
 from scripts.windows_project import ProjectReader
 
@@ -58,6 +60,9 @@ def owned_report(report, identity, error, helper_present):
         record("native_generator_loading_and_setup", "fl_list_installed_generators / fl_add_generator / fl_load_generator_state",
                mutate=True, partial=True, needs_helper=True,
                caveats=["Configured VST2 bank route qualified; internal program selection, other state formats and external assets need separate handling. Verify sound separately."]),
+        record("native_mixer_effect_loading", "fl_list_installed_effects / fl_add_mixer_effect",
+               mutate=True, needs_helper=True,
+               caveats=["Installed .fst into an explicit empty mixer slot; preserves existing effects and routing. Parameter setup, sends, playback and saving are separate operations."]),
         record("sample_import_and_placement", "fl_import_sample / fl_inspect_sample / fl_place_audio_clip",
                mutate=True, needs_helper=True,
                caveats=["WAV as Sampler or Audio Clip; external files stay referenced. Placement does not fit tempo. Verify playback and persistence separately."]),
@@ -73,6 +78,9 @@ def install():
 
     def capabilities(self):
         report = original(self)
+        if family() != "windows":
+            # Never open Win32 resources off Windows; report each route's actual status.
+            return macos_report(report, macos=family() == "macos")
         identity, error = native_context()
         return owned_report(report, identity, error, DLL_PATH.is_file())
 

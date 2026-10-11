@@ -100,6 +100,8 @@ PatternToolResult = Annotated[CallToolResult, PatternCreationResult]
 class ScoreStartupResult(TypedDict):
     ready: Literal[True]
     verification: Literal["earlier_signed_receipt_this_process", "signed_host_bootstrap_receipt"]
+    startup_route: NotRequired[Literal["native_helper", "macos_user_ran_script",
+                                       "macos_rerun_last_script"]]
     script_path: NotRequired[str]
     channel_index: NotRequired[int]
     pattern_number: NotRequired[int]

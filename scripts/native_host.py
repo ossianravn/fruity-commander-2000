@@ -2,10 +2,11 @@
 
 import ctypes
 import mmap
-import os
 import secrets
 from ctypes import wintypes as w
 from pathlib import Path
+
+from scripts.host_platform import require_windows_native
 
 
 DLL_PATH = Path(__file__).resolve().parents[1] / ".local/native/FruityCommanderHost.dll"
@@ -24,8 +25,7 @@ class Request(ctypes.Structure):
 
 
 def native_api():
-    if os.name != "nt":
-        raise OSError("The native helper is currently qualified on Windows x64")
+    require_windows_native("This operation")
     user = ctypes.WinDLL("user32", use_last_error=True)
     kernel = ctypes.WinDLL("kernel32", use_last_error=True)
     signatures = [

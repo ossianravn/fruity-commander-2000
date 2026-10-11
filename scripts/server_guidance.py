@@ -27,3 +27,15 @@ Download, import, playback and save are separate evidence. External files stay r
 Production Run/readiness tools describe their own pipeline, not orchestration of the
 owned native workflow. Report completed changes separately from remaining steps.
 """
+
+MACOS = """
+macOS preview: owned automation clips, Playlist placement, sample import, preset
+loading and save tools are Windows-only; capabilities mark them unavailable. Say so
+plainly and ask the user to save with Cmd+S. Note tools need the user to run
+Postfader Apply in the Piano Roll once per FL launch; relay that step and wait.
+plugins_list_available and plugins_load add named instruments and effects.
+"""
+
+
+def instructions(platform):
+    return INSTRUCTIONS + MACOS if platform == "macos" else INSTRUCTIONS

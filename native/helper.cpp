@@ -15,6 +15,7 @@ static void Execute(Request& request) {
         else if (request.operation == AddSample) success = LoadSample(request);
         else if (request.operation == AddAudioSample) success = LoadSample(request);
         else if (request.operation == PlaceAudio) success = PlaceAudioClip(request);
+        else if (request.operation == AddMixerEffect) success = LoadMixerEffect(request);
         else if (request.operation == SaveProjectToPath) success = SaveProjectAs(request);
         else wcscpy_s(request.error, L"Unknown native operation");
         InterlockedExchange(&request.status, success ? Complete : Failed);

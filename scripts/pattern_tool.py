@@ -85,8 +85,8 @@ def register(server):
         Note times are relative to pattern start; velocities are normalized 0..1.
         Readback shows FL's timing/value quantization.
         Returns the actual pattern reference, notes, and extent. Requires write mode;
-        automatically starts the owned runtime through the native helper, including
-        first named-script selection. Does not place clips or save.
+        automatically starts the owned runtime (Windows native helper, including first
+        script selection; macOS after one user run per FL launch). Does not place clips or save.
         Inspect partial/unknown results before another creation; never auto-retry.
         Use the outer status/verification; selection/identity can be available even
         when the observed score receipt is absent or incomplete. host_receipt only

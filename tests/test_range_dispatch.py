@@ -27,7 +27,7 @@ class RangeDispatchTest(unittest.TestCase):
         self.stack.enter_context(patch.object(creative, "_piano_roll_receipt_path",
                                              return_value=directory / "receipt.json"))
         self.dispatch = self.stack.enter_context(
-            patch.object(range_tool, "run_owned_score_script", return_value={}))
+            patch.object(range_tool, "run_score_script", return_value={}))
         self.receipt = self.stack.enter_context(patch.object(range_tool, "read_receipt"))
         self.stack.enter_context(patch.object(creative, "PIANO_ROLL_RECEIPT_WAIT_SECONDS", 0))
         self.client = Mock()

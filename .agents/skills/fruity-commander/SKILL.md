@@ -1,6 +1,6 @@
 ---
 name: fruity-commander
-description: Use Fruity Commander MCP to inspect FL Studio, choose owned Splice sounds, import WAVs, load generators, create or revise editable patterns, place audio and automation, control VSTs, and save projects.
+description: Use Fruity Commander MCP to inspect FL Studio, choose owned Splice sounds, import WAVs, load instruments and mixer effects, create or revise editable patterns, place audio and automation, control VSTs, and save projects.
 ---
 
 # FL Studio workflow
@@ -15,6 +15,13 @@ agent harnesses. Historical Computer Use proofs do not supply missing operations
 For samples, owned Splice sounds, drum kits or audio loops, read
 [sample workflow](references/samples.md). It covers owned search/download, WAV import
 as a Sampler or Audio Clip, sequencing/placement, and source persistence checks.
+
+For mixer effects, reverb/delay or send buses, read [effects](references/effects.md).
+It covers Windows effect loading, parameter setup and routing through MCP.
+
+On macOS, read [macOS](references/macos.md) before editing. Notes need one user
+step per FL launch, instruments load through the Add menu, and several owned
+operations (automation clips, Playlist placement, samples, saving) are Windows-only.
 
 Use native lookup within Fruity Commander. First return matching paths only:
 `search({query: "..."}).items.map(item => item.path)`.
@@ -69,7 +76,8 @@ when the user asks for development work or historical qualification results.
    returned rows are the selection. Placements/curves/links come from the arrangement.
 2. For an authorized edit, use the existing `fl_set_write_mode` when needed.
    Owned creation/range/inspection tools automatically select and start their score
-   runtime through the native helper, including after a cold FL launch. The server
+   runtime through the Windows native helper, including after a cold FL launch
+   (macOS: one user step per FL launch, see [macOS](references/macos.md)). The server
    requires signed execution proof. `piano_roll_start_session` exposes startup
    separately without musical write mode. If the helper is missing, follow the build
    instructions in [setup](references/setup.md). Legacy upstream score tools retain their older

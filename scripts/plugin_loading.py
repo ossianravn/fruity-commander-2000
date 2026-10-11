@@ -1,27 +1,13 @@
 """Add an installed generator through FL, retaining partial and observed identity."""
 
-from pathlib import Path
-
 import anyio
 from fl_studio_mcp import creative
 
 from scripts.native_host import NativeExecutionError, dispatch
-from scripts.plugin_catalog import list_generators
+from scripts.plugin_catalog import list_generators, validate_preset
 from scripts.windows_project import ProjectReader
 from scripts.plugin_results import GeneratorCatalogToolResult, GeneratorLoadingToolResult
 from scripts.mcp_results import structured_result
-
-
-def validate_preset(preset_path, expected_plugin_name):
-    path = Path(preset_path)
-    if not path.is_absolute() or path.suffix.lower() != ".fst" or not path.is_file():
-        raise ValueError("Provide an existing absolute .fst generator preset path")
-    with path.open("rb") as stream:
-        if stream.read(4) != b"FLhd":
-            raise ValueError("The requested file is not an FL preset")
-    if not expected_plugin_name.strip():
-        raise ValueError("The expected loaded plugin name is required for identity verification")
-    return path.resolve()
 
 
 def add_generator(preset_path, expected_plugin_name, session_fingerprint=None):

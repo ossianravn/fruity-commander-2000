@@ -10,6 +10,13 @@ from pathlib import Path
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 
+# Support the documented direct execution as well as module imports in tests.
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+from scripts import mac_host
+from scripts.host_platform import family
+from scripts.mac_capabilities import NO_MAC_ROUTE
+
 
 REQUIRED_TOOLS = (
     "fl_get_capabilities", "piano_roll_create_pattern", "piano_roll_inspect_score",
@@ -20,7 +27,12 @@ REQUIRED_TOOLS = (
 )
 
 
-def assess(report, tools):
+# The owned route each platform must expose before musical work can start.
+READINESS_ROW = {'windows': 'native_pattern_placement',
+                 'macos': 'editable_note_creation_and_range_revision'}
+
+
+def assess(report, tools, platform='windows'):
     connection = report['connection']
     issues = []
     if not connection['connected'] or not connection['compatible']:
@@ -31,12 +43,20 @@ def assess(report, tools):
     if missing:
         issues.append("Launcher is missing owned tools: " + ', '.join(missing))
     rows = {row['capability']: row for row in report['capabilities']}
-    native = rows.get('native_pattern_placement')
-    if native is None:
+    owned = rows.get(READINESS_ROW.get(platform, READINESS_ROW['windows']))
+    # macOS routes are unqualified, so the report cannot say "available" there yet.
+    ready = ('available',) if platform != 'macos' else ('available', 'partial', 'unvalidated')
+    if owned is None:
         issues.append("Use scripts/postfader_server.py and restart the MCP connection to load owned capabilities.")
-    elif native['status'] != 'available':
-        issues.extend(native['limitations'] or ["Native pattern placement is not ready: " + native['status']])
+    elif owned['status'] not in ready:
+        issues.extend(owned['limitations'] or [f"{owned['capability']} is not ready: {owned['status']}"])
     return list(dict.fromkeys(issues))
+
+
+def windows_only(report):
+    """Owned operations whose only implemented route is the Windows native helper."""
+    return sorted(row['capability'] for row in report['capabilities']
+                  if row['status'] == 'unavailable' and NO_MAC_ROUTE in row['limitations'])
 
 
 async def check(options):
@@ -56,10 +76,14 @@ async def check(options):
                 raise RuntimeError(response.content)
             report = response.structured_content or json.loads(response.content[0].text)
             tools = [tool.name for tool in catalog.tools]
-            issues = assess(report, tools)
-            result = {'ready': not issues, 'tool_count': len(tools),
+            platform = family()
+            issues = assess(report, tools, platform)
+            if platform == 'macos':
+                issues.extend(mac_host.permission_issues())
+            result = {'ready': not issues, 'platform': platform, 'tool_count': len(tools),
                       'server_instructions': initialized.instructions,
-                      'issues': issues, 'capabilities': report,
+                      'issues': issues, 'windows_only': windows_only(report),
+                      'capabilities': report,
                       'scope': 'Fresh SDK connection; no musical writes, playback or script startup performed.'}
             if options.output:
                 options.output.parent.mkdir(parents=True, exist_ok=True)
@@ -67,6 +91,8 @@ async def check(options):
             print(f"{'Ready' if not issues else 'Setup needs attention'}: {len(tools)} tools discovered.")
             for issue in issues:
                 print('- ' + issue)
+            if result['windows_only']:
+                print('Not yet available on this OS: ' + ', '.join(result['windows_only']))
             print('No project edits performed. This does not refresh an already-running agent connection.')
             return bool(issues)
 

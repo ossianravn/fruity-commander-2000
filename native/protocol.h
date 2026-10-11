@@ -9,7 +9,7 @@ enum Operation : uint32_t { Probe = 1, RunOwnedScore = 2, AddGenerator = 3,
                             AddAutomation = 4, PlacePattern = 5, SelectPlaylistTime = 6,
                             LoadPluginState = 7, ReviseAutomation = 8,
                             AddSample = 9, SaveProjectToPath = 10,
-                            AddAudioSample = 11, PlaceAudio = 12 };
+                            AddAudioSample = 11, PlaceAudio = 12, AddMixerEffect = 13 };
 enum Status : LONG { Pending = 0, Running = 1, Complete = 2, Failed = 3 };
 
 // Fixed UTF-16 fields use the Windows extended-path capacity, not a music limit.
@@ -46,3 +46,4 @@ bool LoadGeneratorState(Request& request);
 bool LoadSample(Request& request);
 bool SaveProjectAs(Request& request);
 bool PlaceAudioClip(Request& request);
+bool LoadMixerEffect(Request& request);

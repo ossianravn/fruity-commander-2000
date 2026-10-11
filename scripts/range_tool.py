@@ -12,8 +12,7 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 from fl_studio_mcp import creative
 from fl_studio_mcp.bridge_client import get_client
 
-from scripts.score_startup import ensure_locked_score_session
-from scripts.native_host import run_owned_score_script
+from scripts.score_startup import ensure_locked_score_session, run_score_script
 from scripts.score_results import ScoreToolResult
 from scripts.mcp_results import structured_result
 
@@ -83,7 +82,7 @@ def dispatch_locked_score(operation, request, channel_index, pattern_number, ses
               "pattern_number": pattern_number, "project_saved": False,
               "verification": "none", "status": "pending"}
     try:
-        run_owned_score_script()
+        run_score_script()
     except (OSError, RuntimeError, ValueError) as error:
         return {**result, "status": "unknown", "message": str(error),
                 "next_action": "Inspect the score and native execution error before another edit; do not resend."}
@@ -126,7 +125,7 @@ def register(server):
 
         Selects the target editor; does not change musical data or save the project.
         Requires the upstream editor-selection write mode. Automatically starts
-        the owned script through the native helper, including first selection.
+        the owned script (Windows native helper; macOS after one user run per FL launch).
         FL can add undo history and mark the project dirty when running scripts.
         Use the outer status/verification; observed is a possibly incomplete script
         receipt. host_receipt does not establish a complete score readback.
@@ -142,8 +141,8 @@ def register(server):
         Read the score first. Notes outside the interval retain their original
         host objects and expression. Note times are relative to pattern start;
         velocities are normalized 0..1. Readback shows FL's timing/value quantization.
-        Requires write mode; automatically starts
-        the owned script through the native helper, including first selection.
+        Requires write mode; automatically starts the owned script
+        (Windows native helper; macOS after one user run per FL launch).
         Does not alter pattern extent, automation, or save FLP.
         Use the outer status/verification; an unknown outcome overrides any retained
         observed receipt. host_receipt does not establish a complete score readback.

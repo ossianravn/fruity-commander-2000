@@ -7,11 +7,11 @@ The project-path reference was located using FruityLink's ProjectPath signature
 
 import ctypes
 import hashlib
-import os
 import struct
 from ctypes import wintypes as w
 from pathlib import Path
 
+from scripts.host_platform import require_windows_native
 from scripts.windows_shortcut import _windows_api, _find_window
 
 
@@ -42,8 +42,7 @@ def path_reference(image):
 
 class ProjectReader:
     def __enter__(self):
-        if os.name != "nt":
-            raise OSError("Native project-file identity is currently qualified on Windows only")
+        require_windows_native("Native project identity")
         self.user, self.kernel, callback = _windows_api()
         self.window = _find_window(self.user, self.kernel, callback)
         pid = w.DWORD()
