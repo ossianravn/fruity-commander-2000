@@ -72,11 +72,22 @@ the assistant tells you when. Everything after that is automatic.
 
 ```mermaid
 flowchart LR
-    A["AI assistant<br/>Claude Code · Codex · OpenCode"] -- MCP --> B["Fruity Commander<br/>local MCP server"]
-    B -- "virtual MIDI port<br/>loopMIDI · IAC Driver" --> C["Controller script<br/>inside FL Studio"]
-    B -- "Piano Roll scripts" --> D["FL Studio 2026"]
-    B -. "native helper (Windows)" .-> D
-    C --> D
+    A["<b>Your AI assistant</b><br/>Claude Code · Codex<br/>OpenCode"] -->|MCP| B["<b>Fruity Commander</b><br/>local MCP server"]
+    subgraph FL["FL Studio 2026"]
+        C["<b>Controller script</b><br/>mixer · transport · plugins"]
+        D["<b>Piano Roll script</b><br/>editable notes"]
+        E["<b>Native helper</b> · Windows<br/>clips · Playlist · samples · saving"]
+    end
+    B -->|virtual MIDI| C
+    B -->|script runs| D
+    B -.-> E
+    classDef assistant fill:#14132b,stroke:#2dd4bf,stroke-width:2px,color:#ffffff
+    classDef server fill:#14132b,stroke:#ff8a00,stroke-width:2px,color:#ffffff
+    classDef host fill:#14132b,stroke:#7ee05a,stroke-width:2px,color:#ffffff
+    class A assistant
+    class B server
+    class C,D,E host
+    style FL fill:#0d0c1d,stroke:#a78bfa,stroke-width:2px,color:#ffffff
 ```
 
 - **One local MCP server.** Your assistant calls defined operations with checked
