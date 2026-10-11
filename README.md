@@ -1,70 +1,167 @@
-# Fruity Commander 2000
+<p align="center">
+  <img src="assets/banner.jpg" width="100%" alt="Fruity Commander 2000: a pixel-art fruit robot with headphones conducting a piano roll, an automation curve, mixer faders, knobs and drum pads">
+</p>
 
-Fruity Commander is a local MCP product for creating and revising editable music
-in FL Studio. It combines PostFader with owned note, sample and native host operations.
+<h1 align="center">Fruity Commander 2000</h1>
 
-The workflow supports:
+<p align="center">
+  <b>Make music in FL Studio by asking your AI assistant.</b><br>
+  Editable notes, instruments, mixer effects and Automation Clips, written into your own project.
+</p>
 
-- Creating and inspecting Piano Roll patterns, then revising selected note ranges.
-- Loading installed generators and restoring supported VST2 instrument state.
-- Loading installed mixer effects into empty slots, configuring their controls
-  and routing instruments through them.
-- Creating linked native Automation Clips and revising linear curves.
-- Placing note patterns and Audio Clips in the Playlist.
-- Searching and downloading owned Splice sounds, then importing WAVs as Samplers
-  or Audio Clips.
-- Controlling playback and saving projects, including Save As to an explicit path.
+<p align="center">
+  <img alt="FL Studio 2026" src="https://img.shields.io/badge/FL%20Studio-2026-ff8a00?style=flat-square">
+  <img alt="Windows: supported" src="https://img.shields.io/badge/Windows-supported-3ec46d?style=flat-square">
+  <img alt="macOS: preview" src="https://img.shields.io/badge/macOS-preview-a78bfa?style=flat-square">
+  <img alt="MCP server" src="https://img.shields.io/badge/MCP-server-ff4fa3?style=flat-square">
+  <img alt="Works with Claude Code, Codex and OpenCode" src="https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20Codex%20%C2%B7%20OpenCode-2dd4bf?style=flat-square">
+</p>
 
-Required musical operations run through MCP. The bundled workflow skill explains
-target selection, tool discovery and how to distinguish an edit from playback or
-save evidence. Sample files remain referenced at their existing locations;
-automatic tempo fitting and asset collection are not implemented.
+<p align="center">
+  <a href="#what-you-can-ask-for">Examples</a> ·
+  <a href="#features">Features</a> ·
+  <a href="#how-it-works">How it works</a> ·
+  <a href="#get-started">Get started</a> ·
+  <a href="#status">Status</a> ·
+  <a href="#development">Development</a>
+</p>
 
-## Setup
+---
 
-Start with the [Windows setup guide](SETUP.md) or the
-[macOS preview setup](SETUP-macOS.md), then use the
-[workflow skill](.agents/skills/fruity-commander/SKILL.md). The
-[sample workflow](.agents/skills/fruity-commander/references/samples.md) covers
-owned Splice sounds, WAV import and placement. The
-[effects workflow](.agents/skills/fruity-commander/references/effects.md) covers
-Windows effect loading, parameter discovery and sends.
+Fruity Commander 2000 is an [MCP](https://modelcontextprotocol.io) server and agent
+plugin that lets an AI assistant work inside a running FL Studio project. You
+describe the music; the assistant writes it into FL as ordinary material you can
+keep editing: Piano Roll notes, loaded instruments, mixer effects, native
+Automation Clips and Playlist arrangement. Nothing is bounced to audio behind your
+back. Open the Piano Roll and every note is there to tweak.
 
-Install the [Codex plugin](SETUP.md#activate-or-update-the-codex-plugin) or the
-[Claude Code desktop plugin](SETUP.md#install-the-plugin-in-claude-code) after
-runtime setup. Both use the same workflow and local MCP server. The repository
-contains separate [Codex](.codex-plugin/plugin.json) and
-[Claude](.claude-plugin/plugin.json) manifests; the shared packager adds the
-workflow, [icon](assets/icon.png) and connection paths for your installation.
-Each user generates their own bundle. Its Python environment and native helper
-stay in the installed checkout.
+## What you can ask for
 
-## Current support
+> *"Make an 8-bar ambient chord progression on a new pad and put it at bar 1."*
+>
+> *"Move the melody in bars 5–8 up an octave and leave everything else alone."*
+>
+> *"Add a slow filter sweep over the chorus as an Automation Clip."*
+>
+> *"Put Reeverb 2 on a send and route the lead and the pads to it."*
+>
+> *"Find a dusty drum loop in my Splice library and drop it on track 6."*
+>
+> *"Play it from the top, then save it as Night Drive v2."*
 
-The complete host workflow is qualified on Windows with FL Studio Producer Edition
-26.1.6 build 5639. Native operations verify the engine binary before execution.
-Other FL builds need further qualification.
+The assistant inspects your project first, uses the channels and patterns that are
+actually there, and reads back what FL did after every change.
 
-macOS is a preview that has not yet run on a real Mac. Connection, mixing,
-playback, plugin parameters, editable notes (one FL click per launch) and Add-menu
-instrument/effect loading have Mac routes. Automation Clips, Playlist placement,
-sample import, preset/state loading and saving are Windows-only for now; see the
-[macOS setup](SETUP-macOS.md) for what to test and report.
+## Features
 
-Codex and OpenCode have actual-client editing evidence; Claude has read-only
-evidence. Sample import and Reeverb 2/Delay 3 insertion, parameter changes, sends,
-playback signal and save/reopen have passed live checks.
-Meters establish signal, not listening-based musical quality. Fresh-machine
-installation and standalone distribution remain unqualified.
+| | Windows | macOS *(preview)* |
+| --- | :---: | :---: |
+| Create, read and revise Piano Roll notes | ✅ | ✅ ¹ |
+| Tempo, transport, mixer, sends and plugin parameters | ✅ | ✅ |
+| Load instruments | ✅ installed presets, VST2 state | ✅ by name |
+| Load mixer effects | ✅ into a chosen slot | ✅ by name |
+| Native Automation Clips: create and edit curves | ✅ | 🔜 |
+| Place patterns and audio in the Playlist | ✅ | 🔜 |
+| Import WAVs and owned Splice sounds | ✅ | 🔜 |
+| Save and Save As, with the file write verified | ✅ | 🔜 save with ⌘S |
+
+¹ On a Mac you click **Postfader Apply** in the Piano Roll once each time FL starts;
+the assistant tells you when. Everything after that is automatic.
+
+## How it works
+
+```mermaid
+flowchart LR
+    A["AI assistant<br/>Claude Code · Codex · OpenCode"] -- MCP --> B["Fruity Commander<br/>local MCP server"]
+    B -- "virtual MIDI port<br/>loopMIDI · IAC Driver" --> C["Controller script<br/>inside FL Studio"]
+    B -- "Piano Roll scripts" --> D["FL Studio 2026"]
+    B -. "native helper (Windows)" .-> D
+    C --> D
+```
+
+- **One local MCP server.** Your assistant calls defined operations with checked
+  results. It never works by taking screenshots and clicking around your screen.
+- **A controller script inside FL** handles mixer, transport, channels and plugin
+  parameters over a virtual MIDI port: loopMIDI on Windows, the built-in IAC
+  Driver on macOS.
+- **Notes go through FL's own Piano Roll scripting**, and every run returns a signed
+  receipt. The assistant reports what FL actually stored, not what it asked for.
+- **On Windows, a small native helper** adds what FL's public scripting can't do:
+  Automation Clips, Playlist placement, sample import, preset loading and Save As.
+  It checks the exact FL build first and refuses an unknown build instead of guessing.
+- **Careful by default.** Writes stay off until your request needs them, edits never
+  auto-save, and an uncertain result is inspected rather than silently retried.
+
+## Get started
+
+You need **FL Studio 2026** (26.1.3 build 5336 or newer), Python with
+[uv](https://docs.astral.sh/uv/), and an MCP-capable assistant such as Claude Code
+(desktop app or CLI), Codex or OpenCode.
+
+| | Windows | macOS (preview) |
+| --- | --- | --- |
+| Guide | [SETUP.md](SETUP.md) | [SETUP-macOS.md](SETUP-macOS.md) |
+| Python | 3.13 + MSVC Build Tools (native helper) | 3.12 |
+| Virtual MIDI | [loopMIDI](https://www.tobias-erichsen.de/software/loopmidi.html) | IAC Driver (built in) |
+| Owned operations | Qualified on FL 26.1.6 build 5639 | Not yet tested on a real Mac |
+
+The guides walk through the same four steps:
+
+1. **Install** the Python runtime from this repository.
+2. **Connect FL** with a virtual MIDI port and the controller script.
+3. **Add the plugin** to Claude Code or Codex. The packager builds a bundle with
+   the workflow skill, the icon and your installation's paths.
+4. **Ask for music.** A built-in setup check tells you what still needs attention.
+
+<img src="assets/logo-256.png" width="64" align="left" alt="Fruity Commander app icon">
+
+The plugin appears in your assistant with this icon. It bundles a workflow skill
+that teaches the assistant to inspect before editing and to keep "edited", "played"
+and "saved" apart.
+<br clear="left">
+
+## Status
+
+**Windows.** The full workflow runs live on FL Studio Producer Edition 26.1.6
+build 5639: notes, instrument loading, effects and sends, native Automation Clips,
+Playlist placement, sample import, playback, and save and reopen. Codex and OpenCode
+have completed real editing sessions; Claude Code has passed read-only checks so far.
+Mixer, transport and parameter control work on any supported FL 2026 build. Owned
+operations check for the exact qualified engine, so a new FL build needs
+qualification before they run.
+
+**macOS.** A preview that has not yet run on a real Mac. If you have one, follow
+[SETUP-macOS.md](SETUP-macOS.md), run its read-only probe, and
+[open an issue](https://github.com/ossianravn/fruity-commander-2000/issues) with the
+results. That evidence decides how the Windows-only features come to the Mac.
+
+**Not yet.** Automatic tempo fitting for samples, collecting samples into the project
+folder, curve shapes other than linear, and a signed one-click installer.
 
 ## Development
 
-Install dependencies and build the native helper as described in [setup](SETUP.md).
-Run the automated tests from the repository root:
+Run the test suite from the repository root (`.venv/bin/python` on macOS):
 
 ```powershell
 .\.venv\Scripts\python.exe -B -m unittest discover -s tests -v
 ```
 
-Maintained code files stay within 300 physical lines. PostFader remains an external
-Apache-2.0 dependency pinned by revision in `requirements.txt`.
+| Path | Contents |
+| --- | --- |
+| [`scripts/`](scripts) | MCP tools and host routes (`windows_*`, `mac_*`), setup, packaging and checks |
+| [`native/`](native) | The Windows native helper (C++) |
+| [`.agents/skills/fruity-commander/`](.agents/skills/fruity-commander) | Agent workflow skill and references |
+| [`tests/`](tests) | Unit and contract tests |
+
+Each maintained source file is kept to at most 300 lines.
+
+## Credits
+
+- Built on [PostFader](https://github.com/synopsys0/postfader-fl-studio-mcp)
+  (Apache-2.0), pinned by revision in [`requirements.txt`](requirements.txt). It
+  supplies the MCP base, the MIDI bridge and many of the tools.
+- Native operation design was informed by
+  [FruityLink](https://github.com/Realynx/FL-Automation) (MIT).
+
+Fruity Commander 2000 is an independent project, not affiliated with or endorsed by
+Image-Line. FL Studio is a trademark of Image-Line Software.
