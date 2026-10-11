@@ -35,6 +35,14 @@ function run(argv) {
     var fl = procs[0];
     out.process_name = fl.name();
     try { out.menu_bar = fl.menuBars()[0].menuBarItems.name(); } catch (e) { out.menu_error = String(e); }
+    try {  // Script entries here could let a later version select the score script itself.
+        var tools = fl.menuBars()[0].menuBarItems().filter(function (m) { return /^tools$/i.test(m.name()); });
+        out.tools_menu = tools.length ? tools[0].menus[0].menuItems().map(function (item) {
+            var sub = /script/i.test(item.name() || '') && item.menus().length
+                ? item.menus[0].menuItems.name() : undefined;
+            return {name: item.name(), script_items: sub};
+        }) : null;
+    } catch (e) { out.tools_menu_error = String(e); }
     try {
         out.windows = fl.windows().map(function (w) {
             var row = {title: w.name()};

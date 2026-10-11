@@ -16,7 +16,6 @@ from scripts import mac_host
 
 
 MARKER_NAME = ".fruity-commander-macos-arm.json"
-MENU_PATH = "Scripts > Postfader > Postfader Apply"
 
 
 class ScoreRuntimeNeedsUser(ValueError):
@@ -50,13 +49,18 @@ def staged_receipt_verified(registry):
 
 
 def instruction(reason=None):
-    message = ("macOS needs one action in FL Studio before Fruity Commander can read or "
-               "edit notes (once per FL launch): in the open Piano Roll, choose "
-               f"{MENU_PATH}. It changes no notes. Then repeat the request; later "
-               f"edits rerun it automatically with {mac_host.RUN_LAST_SCRIPT}. "
-               "If this repeats after running it, FL's script runtime could not "
-               "return its receipt; report that rather than retrying edits.")
-    return f"{message} Automatic rerun was not confirmed: {reason}" if reason else message
+    """Relay-ready steps; the path follows FL's manual (Piano roll menu > Tools > Script...)."""
+    message = (
+        "ONE-TIME STEP IN FL STUDIO (needed once each time FL Studio starts). "
+        "Ask the user to: 1) look at the Piano Roll window Fruity Commander just opened "
+        "in FL Studio; 2) click the wrench (Tools) icon at the top of that Piano Roll, "
+        "or open the Piano Roll menu > Tools; 3) choose Script..., then Postfader, then "
+        "Postfader Apply (it may show as Postfader_Apply); 4) reply that it is done. "
+        "This changes no notes. Then repeat the same request; no pattern was created yet. "
+        f"Later edits run it automatically with {mac_host.RUN_LAST_SCRIPT} until FL restarts. "
+        "If this message returns after the user ran it, FL's script runtime could not "
+        "report back: tell the user and stop instead of retrying.")
+    return f"{message} (Automatic rerun was not confirmed: {reason})" if reason else message
 
 
 def arm(registry, prepare):

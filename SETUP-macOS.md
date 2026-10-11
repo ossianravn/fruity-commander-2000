@@ -35,8 +35,6 @@ Windows FL build. A Mac version needs the results described in
 
 ## 1. Get the code
 
-The GitHub repository is private; the owner must invite your GitHub account first.
-
 ```bash
 git clone https://github.com/ossianravn/fruity-commander-2000.git ~/fruity-commander-2000
 ```
@@ -127,14 +125,20 @@ replacing Windows paths with this Mac checkout.
 ## First note edit
 
 Ask, for example: *"Use Fruity Commander to make a 4-bar editable melody on the
-first instrument."* The first time after FL starts, the assistant asks you to do
-one thing in FL:
+first instrument."* The first time after FL starts, the assistant stops and asks
+you to do one thing in FL. This is needed **once each time FL Studio starts**:
 
-> In the open Piano Roll, choose **Scripts › Postfader › Postfader Apply**.
+1. Find the **Piano Roll** window that just opened in FL Studio.
+2. Click the **wrench icon (Tools)** at the top of that Piano Roll.
+   (The same menu is under the Piano Roll menu › **Tools**.)
+3. Choose **Script…** › **Postfader** › **Postfader Apply**. It may be spelled
+   `Postfader_Apply`. Nothing visible happens and no notes change.
+4. Tell the assistant you did it. It then makes the melody.
 
-This changes no notes. Tell the assistant you did it; it then continues. Later
-edits run it automatically until FL is restarted. If you run a different Piano
-Roll script in between, choose Postfader Apply again before the next edit.
+After that, edits run by themselves until you quit FL. If you run a different
+Piano Roll script in between, do steps 2–3 again before the next note edit.
+If the assistant asks for the step again right after you did it, tell the
+developer: it means FL's script could not report back.
 
 Good things to try: load an instrument (*"add FLEX"*), write notes, revise a
 bar, change a plugin knob, play the pattern, then save with **Cmd+S** yourself.

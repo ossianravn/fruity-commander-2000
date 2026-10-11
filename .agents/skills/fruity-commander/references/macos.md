@@ -16,15 +16,24 @@ real-Mac qualification yet; report what actually happened, including failures.
 
 ## One user step per FL launch for notes
 
-macOS has no qualified route to select an FL Piano Roll script programmatically.
-The first note tool call after FL starts returns an error that asks the user to
-choose **Scripts › Postfader › Postfader Apply** in the open Piano Roll. Relay
-that step to the user in chat, say it changes no notes, and wait for their reply.
-Then repeat the same call. Later calls rerun the script with Cmd+Opt+Y.
+macOS has no qualified route to select an FL Piano Roll script programmatically,
+so the user does it once each time FL starts. The first note tool call after FL
+starts returns an error beginning "ONE-TIME STEP IN FL STUDIO". Stop and give the
+user these steps in chat as a short numbered list, then wait for their reply:
 
-- No pattern was created when startup asks for this step; retrying is safe.
-- If the step repeats after the user ran the script, FL's script runtime could
-  not return its receipt. Report that; do not loop.
+1. In FL Studio, find the Piano Roll window Fruity Commander just opened.
+2. Click the wrench (Tools) icon at the top of that Piano Roll (or Piano Roll
+   menu › Tools).
+3. Choose **Script…** › **Postfader** › **Postfader Apply** (may show as
+   Postfader_Apply). It changes no notes.
+4. Reply here when done.
+
+Say they can use the computer meanwhile. After their reply, repeat the same call;
+no pattern was created before the step. Later calls rerun the script with
+Cmd+Opt+Y until FL restarts.
+
+- If the step returns after the user ran it, FL's script runtime could not report
+  back. Tell the user; do not loop.
 - Cmd+Opt+Y needs Accessibility permission for the app running this server. A
   permission error names the System Settings change; relay it, then stop.
 - If the user runs another Piano Roll script, Cmd+Opt+Y would run that script.
